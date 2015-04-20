@@ -11,7 +11,7 @@ import com.mulodo.slave.pojo.Word;
 
 public class WordCountItemWriter implements ItemWriter<Word> {
 	
-	DataSource dataSource;
+	private DataSource dataSource;
 
 	public void write(List<? extends Word> items) throws Exception {
 		Connection con = dataSource.getConnection();
@@ -24,5 +24,15 @@ public class WordCountItemWriter implements ItemWriter<Word> {
 		}
 		con.commit();
 	}
+
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
+	
+	
 
 }

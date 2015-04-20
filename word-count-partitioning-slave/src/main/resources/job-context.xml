@@ -8,9 +8,14 @@
 		 http://www.springframework.org/schema/context
 		 http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:property-placeholder location="classpath:/META-INF/spring/config/application.properties"/>
+	<context:property-placeholder location="classpath:application.properties"/>
 
 	<import resource="datasource-beans.xml"/>
 	<import resource="jms.xml"/>
 	<import resource="job.xml"/>
+	
+	<bean id="wordCountWriter" class="com.mulodo.slave.writer.WordCountItemWriter">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
 </beans>
