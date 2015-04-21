@@ -1,4 +1,4 @@
-package com.mulodo.master.tasklet;
+package com.mulodo.slave.tasklet;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.batch.core.StepContribution;

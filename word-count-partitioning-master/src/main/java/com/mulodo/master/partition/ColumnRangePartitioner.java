@@ -60,6 +60,8 @@ public class ColumnRangePartitioner implements Partitioner
             number++;
         }
 
+        System.out.println(min + "----" + max);
+
         return result;
     }
 }

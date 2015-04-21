@@ -1,7 +1,10 @@
 package com.mulodo.master;
 
+import java.util.Date;
+
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
+import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -22,7 +25,10 @@ public class JobRunner
         Job job = applicationContext.getBean(Job.class);
         JobLauncher jobLauncher = applicationContext.getBean(JobLauncher.class);
 
-        jobLauncher.run(job, new JobParameters());
+        JobParameters jobParameters = new JobParametersBuilder().addDate("now", new Date())
+                .toJobParameters();
+
+        jobLauncher.run(job, jobParameters);
 
         System.exit(0);
     }

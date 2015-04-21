@@ -17,6 +17,7 @@
 		<commons.dbcp.version>1.4</commons.dbcp.version>
 		<imgscalr.version>4.2</imgscalr.version>
 		<commons.io.version>2.4</commons.io.version>
+		<pgsql-version>9.1-901.jdbc4</pgsql-version>
 	</properties>
 	<modules>
 		<module>remote-partitioning/remote-partitioning-master</module>
@@ -68,6 +69,11 @@
 				<groupId>commons-io</groupId>
 				<artifactId>commons-io</artifactId>
 				<version>${commons.io.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>${pgsql-version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

@@ -3,36 +3,37 @@ package com.mulodo.slave.writer;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.batch.item.ItemWriter;
 
-import com.mulodo.slave.pojo.Word;
+import com.mulodo.slave.pojo.WordCount;
 
-public class WordCountItemWriter implements ItemWriter<Word> {
-	
-	private DataSource dataSource;
+public class WordCountItemWriter implements ItemWriter<List<WordCount>>
+{
 
-	public void write(List<? extends Word> items) throws Exception {
-		Connection con = dataSource.getConnection();
-		con.setAutoCommit(false);
-		for(Word item : items){
-			CallableStatement callstmt = con.prepareCall("{call update_insert_word(?, ?)}");
-			callstmt.setString(1, item.getWord());
-			callstmt.setInt(2, item.getCount());
-			callstmt.execute();
-		}
-		con.commit();
-	}
+    private DataSource dataSource;
 
-	public DataSource getDataSource() {
-		return dataSource;
-	}
+    public void write(List<? extends List<WordCount>> items) throws Exception
+    {
+        Connection con = dataSource.getConnection();
+        con.setAutoCommit(false);
+        for (List<WordCount> item : items) {
 
-	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
-	}
-	
-	
+            for (WordCount wc : item) {
+                CallableStatement callstmt = con.prepareCall("{call update_insert_word(?, ?)}");
+                callstmt.setString(1, wc.getWord());
+                callstmt.setInt(2, wc.getCount());
+                callstmt.execute();
+            }
+            con.commit();
+        }
+    }
+
+    public void setDataSource(DataSource dataSource)
+    {
+        this.dataSource = dataSource;
+    }
 
 }
