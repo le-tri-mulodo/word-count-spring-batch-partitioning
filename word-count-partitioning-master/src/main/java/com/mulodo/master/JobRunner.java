@@ -13,7 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class JobRunner
 {
-    private static final String CONFIG = "/META-INF/spring/config/job-context.xml";
+    private static final String CONFIG = "job-context.xml";
 
     public static void main(String[] args) throws Exception
     {

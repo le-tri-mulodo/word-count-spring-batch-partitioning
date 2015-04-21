@@ -16,17 +16,17 @@ import java.io.File;
  */
 public class CleanupTasklet implements Tasklet
 {
-    private final String processedImagePath;
+    private final String destinationPath;
 
-    public CleanupTasklet(final String processedImagePath) {
-        this.processedImagePath = processedImagePath;
+    public CleanupTasklet(final String destinationPath) {
+        this.destinationPath = destinationPath;
     }
 
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext)
             throws Exception
     {
-        FileUtils.cleanDirectory(new File(processedImagePath));
+        FileUtils.cleanDirectory(new File(destinationPath));
 
         return RepeatStatus.FINISHED;
     }

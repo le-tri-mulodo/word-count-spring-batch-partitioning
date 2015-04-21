@@ -24,7 +24,7 @@ public class JobDurationListener implements JobExecutionListener
     public void beforeJob(JobExecution jobExecution)
     {
         stopWatch = new StopWatch();
-        stopWatch.start("Processing image submissions");
+        stopWatch.start("Processing word count submissions");
     }
 
     @Override
