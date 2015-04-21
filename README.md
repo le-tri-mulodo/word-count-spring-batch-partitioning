@@ -34,17 +34,27 @@ To build, execute from the top level directory:
 
 ## Run
 
-Start HSQLDB server:
+Start ActiveMQ
 
-`$ java -cp /path/to/hsqldb-2.3.1.jar org.hsqldb.Server -database.0 file:mydb -dbname.0 partition`
++ Setup data locations:
+
+`$ mkdir -p $HOME/image_submissions/bulk`
+
++ start ActiveMQ
+
+`$ java -Djava.awt.headless=true -jar message-job-launch/target/message-job-launch-1.0.0.BUILD-SNAPSHOT.jar`
+
+Start PostgresqlDB server:
+
+``
 
 Start the slave:
 
-`$ java -Djava.awt.headless=true -jar remote-partitioning/remote-partitioning-slave/target/remote-partitioning-slave-1.0.0.BUILD-SNAPSHOT.jar`
+``
 
 Start the master:
 
-`$ java -jar remote-partitioning/remote-partitioning-master/target/remote-partitioning-master-1.0.0.BUILD-SNAPSHOT.jar`
+``
 
 
 
