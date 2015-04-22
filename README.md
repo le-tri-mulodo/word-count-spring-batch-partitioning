@@ -12,14 +12,14 @@ Use Spring Batch to implement count word in PDF files follow Master/Slave model
 
 Create schema for storing word-count and word-count-reposiory. Execute `create_schema.sql`
 
-+ If an error "language 'plpgsql' does not exist" happened when executing `create_schema.sql` 
+**Note:** If an error "language 'plpgsql' does not exist" happened when executing `create_schema.sql` 
   + Access to postgres directory by command `su -postgres`
   + Use this command `createlang -d dbname plpgsql`
   + Run `create_schema.sql` again
 
-## SetUp
+### SetUp
 
-Open `application.properties` from master and config.
+Open `application.properties` from *master* and config.
 
 + Config values for the datasource:
   + `batch.jdbc.driver`: Postgresql driver for datasource
@@ -33,28 +33,20 @@ Open `application.properties` from master and config.
 + Config ActiveMQ
   + `broker.url`: ActiveMQ URL
 
-Open `application.properties` from slave and config.
-+ Config values for the datasource:
-  + `batch.jdbc.driver`: Postgresql driver for datasource
-  + `batch.jdbc.url`: URL of word_count data schema
-  + `batch.jdbc.url_repo`: URL of job repository schema
-  + `batch.jdbc.username` & `batch.jdbc.password`: User name & password to access datasource
-+ Config database
-  + `batch.job_repo.databaseType`: postgres
-+ Config ActiveMQ
-  + `broker.url`: ActiveMQ URL
+Open `application.properties` from *slave* and config.
+Some properties same properties in *master*
 + Config pdf diretory path:
   + `processed.pdf.dir`: pdf directory path
 + Config delimeter
   + `delimiter`: Cut the word when matching delimeter
 
-## Build
+### Build
 
 To build, execute from the top level directory:
 
 `$ mvn clean install`
 
-## Run
+### Run
 
 + Start ActiveMQ
 
