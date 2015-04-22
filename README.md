@@ -15,8 +15,7 @@ Create schema for storing word-count and word-count-reposiory. Execute `create_s
 + If an error "language 'plpgsql' does not exist" happened when executing `create_schema.sql` 
   + Access to postgres directory by command `su -postgres`
   + Use this command `createlang -d dbname plpgsql`
-  
-Run `create_schema.sql` again
+  + Run `create_schema.sql` again
 
 ## SetUp
 
