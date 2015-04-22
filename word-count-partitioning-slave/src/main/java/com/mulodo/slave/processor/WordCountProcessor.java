@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.batch.item.ItemProcessor;
 
 import com.mulodo.slave.pojo.WordCount;
@@ -13,13 +15,14 @@ import com.mulodo.slave.pojo.WordCount;
 public class WordCountProcessor implements ItemProcessor<String, List<WordCount>>
 {
 
+    private static final Log LOG = LogFactory.getLog(WordCountProcessor.class);
+
     String delimiter = " !.,?:;\t={}[]#/()<>@'*\"+-";
 
     @Override
     public List<WordCount> process(String content) throws Exception
     {
-        System.out.println("|" + delimiter + "|");
-
+        long startTime = System.currentTimeMillis();
         StringTokenizer st = new StringTokenizer(content, delimiter);
         HashMap<String, Integer> map = new HashMap<String, Integer>();
 
@@ -27,9 +30,8 @@ public class WordCountProcessor implements ItemProcessor<String, List<WordCount>
         while (st.hasMoreTokens()) {
             String word = st.nextToken();
             if (word.length() < 128) {
-
+                // To lower case
                 word = word.toLowerCase();
-
                 if (map.get(word) != null) {
                     // another occurrence of an existing word
                     int count = map.get(word);
@@ -40,17 +42,23 @@ public class WordCountProcessor implements ItemProcessor<String, List<WordCount>
                     map.put(word, 1);
                 }
             } else {
-                System.out.println("---|" + word + "|---");
+                // Skip word with size > 128
+                LOG.debug("Skip word:" + word);
             }
         }
 
+        // Convert map to list
         List<WordCount> list = new ArrayList<WordCount>(map.size());
         WordCount wc = null;
+        // Loop all items in map
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
             wc = new WordCount(entry.getKey(), entry.getValue());
-
+            // Add word into list
             list.add(wc);
         }
+
+        LOG.info("Word count success. Number word: " + map.size() + ". Duration: "
+                + (System.currentTimeMillis() - startTime));
 
         return list;
     }

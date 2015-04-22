@@ -6,29 +6,36 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.batch.item.ItemWriter;
 
 import com.mulodo.slave.pojo.WordCount;
 
 public class WordCountItemWriter implements ItemWriter<List<WordCount>>
 {
+    private static final Log LOG = LogFactory.getLog(WordCountItemWriter.class);
 
     private DataSource dataSource;
 
     public void write(List<? extends List<WordCount>> items) throws Exception
     {
-        Connection con = dataSource.getConnection();
-        con.setAutoCommit(false);
-        for (List<WordCount> item : items) {
+        long startTime = System.currentTimeMillis();
+        try (Connection con = dataSource.getConnection();) {
+            // con.setAutoCommit(false);
+            for (List<WordCount> item : items) {
 
-            for (WordCount wc : item) {
-                CallableStatement callstmt = con.prepareCall("{call update_insert_word(?, ?)}");
-                callstmt.setString(1, wc.getWord());
-                callstmt.setInt(2, wc.getCount());
-                callstmt.execute();
+                for (WordCount wc : item) {
+                    CallableStatement callstmt = con.prepareCall("{call update_insert_word(?, ?)}");
+                    callstmt.setString(1, wc.getWord());
+                    callstmt.setInt(2, wc.getCount());
+                    callstmt.execute();
+                }
             }
-            con.commit();
         }
+        // con.commit();
+        LOG.info("Update DB success. Duration: " + (System.currentTimeMillis() - startTime));
+
     }
 
     public void setDataSource(DataSource dataSource)

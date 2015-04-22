@@ -20,8 +20,8 @@
 		<pgsql-version>9.1-901.jdbc4</pgsql-version>
 	</properties>
 	<modules>
-		<module>remote-partitioning/remote-partitioning-master</module>
-		<module>remote-partitioning/remote-partitioning-slave</module>
+		<module>word-count-partitioning-master</module>
+		<module>word-count-partitioning-slave</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
