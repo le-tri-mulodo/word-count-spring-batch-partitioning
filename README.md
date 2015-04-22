@@ -34,12 +34,13 @@ Open `application.properties` from *master* and config.
   + `broker.url`: ActiveMQ URL
 
 Open `application.properties` from *slave* and config.
-Some properties same properties in *master*
+
 + Config pdf diretory path:
   + `processed.pdf.dir`: pdf directory path
 + Config delimeter
   + `delimiter`: Cut the word when matching delimeter
 
+**Note:** Some properties in *slave* and *master* are same so don't need repeat
 ### Build
 
 To build, execute from the top level directory:
