@@ -1,7 +1,7 @@
 # word-count-spring-batch-partitioning
 Use Spring Batch to implement count word in PDF files follow Master/Slave model
 ## Master/Slave model
-
+![remote-partitioning tag](http://docs.spring.io/spring-batch/reference/htmlsingle/images/remote-partitioning.png)
 ## Word count algorithm
 
 ![alt tag](WordsCount.png)
@@ -22,32 +22,31 @@ Create schema for storing word-count and word-count-reposiory. Execute `create_s
 Open `application.properties` from master and config.
 
 + Config values for the datasource:
-  + batch.jdbc.driver: Postgresql driver for datasource
-  + batch.jdbc.url: URL of word_count data schema
-  + batch.jdbc.url_repo: URL of job repository schema
-  + batch.jdbc.username & batch.jdbc.password: User name & password to access datasource
+  + `batch.jdbc.driver`: Postgresql driver for datasource
+  + `batch.jdbc.url`: URL of word_count data schema
+  + `batch.jdbc.url_repo`: URL of job repository schema
+  + `batch.jdbc.username` & `batch.jdbc.password`: User name & password to access datasource
 + Config values for database
-  + batch.schema.script: Create schema
-  + batch.drop.script: Drop schema
-  + batch.job_repo.databaseType: Specify database
+  + `batch.schema.script`: Create schema
+  + `batch.drop.script`: Drop schema
+  + `batch.job_repo.databaseType`: Specify database type
 + Config ActiveMQ
-  + broker.url: ActiveMQ URL
+  + `broker.url`: ActiveMQ URL
 
 Open `application.properties` from slave and config.
 + Config values for the datasource:
-  + batch.jdbc.driver: Postgresql driver for datasource
-  + batch.jdbc.url: URL of word_count data schema
-  + batch.jdbc.url_repo: URL of job repository schema
-  + batch.jdbc.username & batch.jdbc.password: User name & password to access datasource
+  + `batch.jdbc.driver`: Postgresql driver for datasource
+  + `batch.jdbc.url`: URL of word_count data schema
+  + `batch.jdbc.url_repo`: URL of job repository schema
+  + `batch.jdbc.username` & `batch.jdbc.password`: User name & password to access datasource
 + Config database
-  + batch.job_repo.databaseType: postgres
+  + `batch.job_repo.databaseType`: postgres
 + Config ActiveMQ
-  + broker.url: ActiveMQ URL
+  + `broker.url`: ActiveMQ URL
 + Config pdf diretory path:
-  + processed.pdf.dir: pdf directory path
+  + `processed.pdf.dir`: pdf directory path
 + Config delimeter
-  + delimiter: Cut the word when matching delimeter
-
+  + `delimiter`: Cut the word when matching delimeter
 
 ## Build
 
