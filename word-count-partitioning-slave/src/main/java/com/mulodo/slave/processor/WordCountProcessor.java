@@ -28,10 +28,10 @@ public class WordCountProcessor implements ItemProcessor<String, List<WordCount>
 
         // process each word and write the map
         while (st.hasMoreTokens()) {
-            String word = st.nextToken();
-            if (word.length() < 128) {
-                // To lower case
-                word = word.toLowerCase();
+            String word = st.nextToken().trim().toLowerCase();
+            // Check word if size > 128 and contain NULL charactor then not add
+            // to map
+            if (word.length() < 128 && !word.contains("\u0000")) {
                 if (map.get(word) != null) {
                     // another occurrence of an existing word
                     int count = map.get(word);
