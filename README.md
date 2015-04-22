@@ -13,11 +13,11 @@ Add the word cut by StringTokenizer to a map as a key and the value will be the 
 
 ## Initialize DB
 
-Create schema for storing word-count and word-count-reposiory. Run `create_schema.sql`
+Create schema for storing word-count and word-count-reposiory. Execute `create_schema.sql`
 
-There will be an error "language 'plpgsql' does not exist" when executing `create_schema.sql` 
-  Access to postgres directory by command `su -postgres`
-  Use this command `createlang -d dbname plpgsql`
++ If an error "language 'plpgsql' does not exist" happened when executing `create_schema.sql` 
+  + Access to postgres directory by command `su -postgres`
+  + Use this command `createlang -d dbname plpgsql`
   
 Run `create_schema.sql` again
 
@@ -62,16 +62,14 @@ To build, execute from the top level directory:
 ## Run
 
 + Start ActiveMQ
-  
-Move to `apache-activemq-5.11.1` directory, then run `./bin/activemq start`
 
 + Start the slave:
 
-`$ java -Djava.awt.headless=true -jar slave directory/target/.jar`
+`$ java -Djava.awt.headless=true -jar slave directory/target/remote-partitioning-slave-0.1.jar`
 
 + Start the master:
 
-`$ java -jar master directory/target/.jar`
+`$ java -jar master directory/target/remote-partitioning-master-0.1.jar`
 
 
 
