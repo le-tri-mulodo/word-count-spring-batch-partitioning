@@ -17,6 +17,9 @@ Create schema for storing word-count and word-count-reposiory. Execute `create_s
   + Use this command `createlang -d dbname plpgsql`
   + Run `create_schema.sql` again
 
+## PDF files
+  Download PDF files from [here](http://mega.co.nz/#!51owDRTB!O76LOQKQeFHcqCXJy1FKNhGHWphdNYgkr8C-QAFAohQ)
+
 ### SetUp
 
 Open `application.properties` from *master* and config.
