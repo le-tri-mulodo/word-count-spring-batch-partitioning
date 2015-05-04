@@ -56,11 +56,11 @@ To build, execute from the top level directory:
 
 + Start the slave:
 
-`$ java -Djava.awt.headless=true -jar /word-count-partitioning-slave/target/remote-partitioning-slave-0.1.jar`
+`$ java -Djava.awt.headless=true -jar word-count-partitioning-slave/target/remote-partitioning-slave-0.1.jar`
 
 + Start the master:
 
-`$ java -jar /word-count-partitioning-master/target/remote-partitioning-master-0.1.jar`
+`$ java -jar word-count-partitioning-master/target/remote-partitioning-master-0.1.jar`
 
 
 
