@@ -17,6 +17,9 @@ Create schema for storing word-count and word-count-reposiory. Execute `create_s
   + Use this command `createlang -d dbname plpgsql`
   + Run `create_schema.sql` again
 
+## PDF files
+  Download PDF files from [here](http://mega.co.nz/#!51owDRTB!O76LOQKQeFHcqCXJy1FKNhGHWphdNYgkr8C-QAFAohQ)
+
 ### SetUp
 
 Open `application.properties` from *master* and config.
@@ -53,11 +56,11 @@ To build, execute from the top level directory:
 
 + Start the slave:
 
-`$ java -Djava.awt.headless=true -jar /slave directory/target/remote-partitioning-slave-0.1.jar`
+`$ java -Djava.awt.headless=true -jar word-count-partitioning-slave/target/remote-partitioning-slave-0.1.jar`
 
 + Start the master:
 
-`$ java -jar /master directory/target/remote-partitioning-master-0.1.jar`
+`$ java -jar word-count-partitioning-master/target/remote-partitioning-master-0.1.jar`
 
 
 
