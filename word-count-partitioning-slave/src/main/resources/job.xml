@@ -92,6 +92,9 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
+	<bean id="emptyWriter" class="com.mulodo.slave.writer.EmptyItemWriter">
+	</bean>
+
 	<bean id="jobRepository"
 		class="org.springframework.batch.core.repository.support.JobRepositoryFactoryBean">
 		<property name="dataSource" ref="dataSourceJobRepo" />

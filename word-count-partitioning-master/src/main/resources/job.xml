@@ -47,7 +47,7 @@
 	<bean id="partitionHandler"
 		class="org.springframework.batch.integration.partition.MessageChannelPartitionHandler">
 		<property name="stepName" value="wordCount" />
-		<property name="gridSize" value="1" />
+		<property name="gridSize" value="5" />
 		<property name="replyChannel" ref="aggregatedReplyChannel" />
 		<property name="messagingOperations">
 			<bean class="org.springframework.integration.core.MessagingTemplate">
